@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.shortcuts import get_object_or_404, redirect, render
 from carrinho.models import Carrinho, carItem
 from produtos.models import Produto
@@ -38,10 +39,15 @@ def exibirCarrinho (request,total = 0, quantidade = 0, car_itens = None):
             quantidade += car_item.quantidade
     except ObjectDoesNotExist:
         pass
+    taxa = Decimal('0.1')
+    valor_imposto = total * taxa
+    valor_total = total + valor_imposto
     contexto = {
         'total' : total,
         'quantidade' : quantidade,
         'car_itens' : car_itens,
+        'valor_imposto' : valor_imposto,
+        'valor_total' : valor_total,
     }
     
     return render(request,'loja/carrinho.html', contexto)
