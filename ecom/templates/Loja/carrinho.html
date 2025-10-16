@@ -3,7 +3,6 @@
   <section class="section-content padding-y bg">
     <div class="container">
       <!-- ============================ COMPONENT 1 ================================= -->
-
       <div class="row">
         <aside class="col-lg-9">
           <div class="card">
@@ -13,6 +12,7 @@
                   <th scope="col">Produto</th>
                   <th scope="col" width="120">Quantidade</th>
                   <th scope="col" width="120">Preço</th>
+                  <th scope="col" width="120">Subtotal</th>
                   <th scope="col" class="text-right" width="200"></th>
                 </tr>
               </thead>
@@ -49,7 +49,11 @@
                             <i class="fa fa-minus"></i>
                           </a>
                         </div>
-                        <input type="text" class="form-control" value="1" />
+                        <input
+                          type="text"
+                          class="form-control"
+                          value="{{item.quantidade}}"
+                        />
                         <div class="input-group-append">
                           <a
                             href="{% url 'adicionar_car' item.produto.id %}"
@@ -67,8 +71,13 @@
                   </td>
                   <td>
                     <div class="price-wrap">
+                      <var class="price">R${{item.produto.preco}}</var>
+                    </div>
+                    <!-- price-wrap .// -->
+                  </td>
+                  <td>
+                    <div class="price-wrap">
                       <var class="price">R${{item.subtotal}}</var>
-                      <small class="text-muted">R${{item.produto.preco}}</small>
                     </div>
                     <!-- price-wrap .// -->
                   </td>
