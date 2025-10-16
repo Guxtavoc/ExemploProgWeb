@@ -4,7 +4,6 @@ from produtos.models import Produto
 
 # Create your views here.
 def visualizarLoja(request, categoria_slug = None):
-
     if categoria_slug!=None:
         cat = get_object_or_404(Categoria, slug = categoria_slug)
         produtos = Produto.objects.all().filter(categoria = cat, esta_disponivel = True)
